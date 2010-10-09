@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block left_panel %}
+{% if user in  %}
+  <form action="/project/{{ project.id }}/news/add/" method="post">{% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <input type="submit"/>
+  </form>
+{% endif %}
+{% endblock %}

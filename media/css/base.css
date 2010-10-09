@@ -1,0 +1,48 @@
+#logo {
+  height: 70px;
+  width: 100%;
+  background-color: #0066CC;
+}
+#logo_back {
+  height: inherit;
+  position:absolute;
+  right:10px;  
+}
+#menu {
+  height: 30px;
+  width: 100%;
+  background-color: #000000;
+}
+#menu_item {
+  color: #ffffff;
+  line-height: 25px;
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+#menu_item:hover {
+  background-color: #0099FF;
+  
+}
+#right_panel {
+  float: right;
+  background-color: #EEEEEE;
+  width: 30%;
+  border-radius: 10px;
+  position: relative;
+  right: 10px;
+  top: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+#left_panel {
+  float: left;
+  background-color: #C6D880;
+  width:60%;
+  border-radius: 10px;
+  position: relative;
+  left: 10px;
+  top:10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}

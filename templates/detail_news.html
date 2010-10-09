@@ -1,0 +1,6 @@
+{% extends "index.html" %}
+{% block left_panel %}
+<a href="/news/{{ news.id }}/">{{ news.title }}</a>
+<div>{{ news.text }}</div>
+<div>{{ news.date }} {{ news.user.username }}</div>
+{% endblock %}

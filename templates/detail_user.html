@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block left_panel %}
+  Username: {{ u.username }}<br>
+  First name: {{ u.firstname }}<br>
+  Last name: {{ u.lastname }}<br>
+  E-mail: {{ u.email }}<br>
+  Password hash: {{ u.password }}<br>
+  Is staff: {{ u.is_staff }}<br>
+  Is active: {{ u.is_active }}<br>
+  Is superuser: {{ u.is_superuser }}<br>
+  Last login: {{ u.last_login }}<br>
+  Date joined: {{ u.date_joined }}<br>
+  Birthday: {{ profile.birthday }}<br>
+  Country: {{ profile.country }}<br>
+  Rating: {{ profile.rating }}<br>
+  ICQ: {{ profile.icq }}<br>
+  Jabber: {{ profile.jabber }}<br>
+  Skype: {{ profile.skype }}<br>
+  Admin of projects:
+  <ul>
+  {% for i in u.admin_project_set %}
+    <li>{{ i.name }}</li>
+  {% endfor %}
+  </ul>
+  
+{% endblock %}

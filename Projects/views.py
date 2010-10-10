@@ -28,23 +28,20 @@ def detail_news(request,project_id,news_id):
                                                                                            })
 @login_required
 def add_news(request,project_id):
-    error=str()
     user=request.user
     project = get_object_or_404(Project,pk=project_id)
+    form = ''
     if request.method == 'POST':
-        title = request.POST.get('title',None)
-        text = request.POST.get('text',None)
+        form = AddNewsForm(request.POST or None)
         if (user in project.admins.all() or user in project.moders.all()):
-            if title and text:
-                project.news_set.add(News(title=title,text=text,user=user))
+            if form.is_valid():
+                n=form.save(commit=False)
+                n.user = user
+                project.news_set.add(n)
                 return redirect("/project/%d/" % (int(project_id)))
-            else:
-                error = 'Please fill Title and Text.'
-        else:
-            error = 'You do not have permissions to post news'
-    form = AddNewsForm(request.POST or None)
+    else:
+        form = AddNewsForm()
     return direct_to_template(request=request, template='add_news.html', extra_context={'form':form,
                                                                                         'project':project,
                                                                                         'user':user,
-                                                                                        'error':error
                                                                                         })

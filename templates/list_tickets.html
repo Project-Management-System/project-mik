@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block left_panel %}
+{% if tickets %}
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Status</td>
+    <td>Date</td>
+  </tr>
+  {% for i in tickets %}
+  <tr>
+    <td><a href="{{ i.id }}/">{{ i.name }}</a></td>
+    <td>{{ i.type }}</td>
+    <td>{{ i.status }}</td>
+    <td>{{ i.datetime_started }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

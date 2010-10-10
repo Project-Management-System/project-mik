@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block left_panel %}
-{% if user in  %}
-  <form action="/project/{{ project.id }}/news/add/" method="post">{% csrf_token %}
+{% if error %}
+  <div class="error">{{error}}</div>
+{% endif %}
+  <form action="/project/{{ project.id }}/news/add/" method="post" class="login_form">{% csrf_token %}
     <table>
       {{ form }}
     </table>
-    <input type="submit"/>
+    <button type="submit" class="button positive">
+      <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
+    </button>
   </form>
-{% endif %}
 {% endblock %}

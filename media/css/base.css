@@ -14,15 +14,13 @@
   background-color: #000000;
 }
 #menu_item {
+  float:left;
+  width:20%;
   color: #ffffff;
-  line-height: 25px;
-  width: 20%;
-  height: 100%;
-  float: left;
+  background-color: #000000;
 }
 #menu_item:hover {
   background-color: #0099FF;
-  
 }
 #right_panel {
   float: right;

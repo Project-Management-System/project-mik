@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+
+{% block left_panel %}
+  {{ ticket.name }}<br>
+  {{ ticket.desription }}<br>
+  {{ ticket.type }}<br>
+  {{ ticket.status }}<br>
+  {{ ticket.datetime_started }}
+{% endblock %}

@@ -5,14 +5,14 @@ from django.contrib.auth.models import User
 
 class Ticket(models.Model):
     name = models.CharField(max_length = 100)
-    description = models.CharField(max_length = 10000)
+    description = models.TextField()
     project = models.ForeignKey(Project)
     type = models.CharField(max_length = 20)
     status = models.CharField(max_length = 20)
     datetime_started = models.DateTimeField(default = datetime.datetime.now())
     
     def __unicode__(self):
-        return self.name+'(id='+str(self.pk)+')'
+        return self.name
     
 class Comment(models.Model):
     datetime = models.DateField(default = datetime.datetime.now())

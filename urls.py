@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     (r'^project/(?P<project_id>\d+)/news/(?P<news_id>\d+)/$','the_project.Projects.views.detail_news'),
     (r'^project/(?P<project_id>\d+)/tickets/$','the_project.Tickets.views.list_tickets'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/$','the_project.Tickets.views.detail_ticket'),
+    (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/add/$','the_project.Tickets.views.detail_ticket'),
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/mik/Aptana Studio 3 Workspace/the_project/src/the_project/media/'}),
 )

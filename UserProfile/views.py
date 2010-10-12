@@ -22,13 +22,12 @@ def register(request):
 
 def account(request):
     user = request.user
+    profile = user.get_profile()
     if user.is_authenticated():
-        profile = user.get_profile()
         if request.method == 'POST':
-            form = UserProfileForm(request.POST or None)
+            form = UserProfileForm(request.POST or None,instance=profile)
             if form.is_valid():
-                profile = form.save(commit=False)
-                profile.save()
+                form.save()
                 return redirect('/account/')
         else:
             form = UserProfileForm(instance=profile)

@@ -3,7 +3,7 @@ from the_project.Projects.models import Project
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
-from the_project.Tickets.forms import AddComment
+from the_project.Tickets.forms import AddComment, AddTicket
 
 def list_tickets(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
@@ -24,3 +24,20 @@ def detail_ticket(request,project_id,ticket_id):
         form = AddComment()
     comments = ticket.comment_set.all()
     return direct_to_template(request=request, template='detail_ticket.html', extra_context=locals())
+
+def add_ticket(request,project_id):
+    project = get_object_or_404(Project,pk=project_id)
+    user = request.user
+    form = ''
+    if request.method == 'POST':
+        form = AddTicket(request.POST or None)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            text = form.cleaned_data['text']
+            type = form.cleaned_data['type']
+            t = project.ticket_set.create(name=name,type=type)
+            t.comment_set.create(text=text,user=user)
+            return redirect('/project/%s/tickets/'%(project_id))
+    else:
+        form = AddTicket()
+    return direct_to_template(request, 'add_ticket.html', locals())

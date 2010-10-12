@@ -39,16 +39,23 @@ def account(request):
     else:
         return redirect('/account/register/')
 
-def messages(request):
+def messages(request,type):
     user = request.user
     a_projects = user.admin_project.all()
     m_projects = user.moder_project.all()
-    m_messages = user.inbox.all()
+    m_messages = []
+    num_messages = len(user.inbox.filter(is_new=True))
+    if type == 'inbox':
+        m_messages = user.inbox.all()
+    else:
+        m_messages = user.outbox.all()
     return direct_to_template(request=request, template='account/inbox.html', extra_context=locals())
 
 def detail_message(request,message_id):
     user = request.user
     m = get_object_or_404(Message,pk=message_id)
+    m.is_new = False
+    m.save()
     form = SendMessageForm({'to_user':m.from_user})
     a_projects = user.admin_project.all()
     m_projects = user.moder_project.all()

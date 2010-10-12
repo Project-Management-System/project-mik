@@ -25,7 +25,7 @@ def account(request):
     profile = user.get_profile()
     if user.is_authenticated():
         if request.method == 'POST':
-            form = UserProfileForm(request.POST or None,instance=profile)
+            form = UserProfileForm(request.POST or None,instance=profile    )
             if form.is_valid():
                 form.save()
                 return redirect('/account/')

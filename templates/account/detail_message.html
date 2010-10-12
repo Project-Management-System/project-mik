@@ -1,0 +1,16 @@
+{% extends "account/account.html" %}
+
+{% block left_panel %}
+  <h2>{{ m.subject }}</h2><br>
+  {{ m.text }}<br>
+  {{ m.date }} {{ m.from_user }}
+  
+  <form method="post" action="/account/messages/send/">{% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <button type="submit" class="button positive">
+      <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
+    </button>
+  </form>
+{% endblock %}

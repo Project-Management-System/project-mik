@@ -54,9 +54,14 @@ def messages(request,type):
 def detail_message(request,message_id):
     user = request.user
     m = get_object_or_404(Message,pk=message_id)
+    num_messages = len(user.inbox.filter(is_new=True))
     m.is_new = False
     m.save()
-    form = SendMessageForm({'to_user':m.from_user})
+    form = ''
+    if m.to_user == user:
+        form = SendMessageForm({'to_user':m.from_user})
+    else:
+        form = SendMessageForm({'to_user':m.to_user})
     a_projects = user.admin_project.all()
     m_projects = user.moder_project.all()
     return direct_to_template(request=request, template='account/detail_message.html', extra_context=locals())

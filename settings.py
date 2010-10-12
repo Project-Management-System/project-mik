@@ -98,8 +98,8 @@ INSTALLED_APPS = (
     'the_project.main',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'registration',
-    'django_extensions',
+#    'registration',
+#    'django_extensions',
 )
 
 LOGIN_REDIRECT_URL = '/'

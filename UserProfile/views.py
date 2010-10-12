@@ -1,10 +1,11 @@
 # Create your views here.
 from django.views.generic.simple import direct_to_template
-from the_project.UserProfile.forms import RegistrationForm, UserProfileForm
+from the_project.UserProfile.forms import RegistrationForm, UserProfileForm,\
+    SendMessageForm
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from the_project.UserProfile.models import UserProfile
+from the_project.UserProfile.models import UserProfile, Message
 
 def register(request):
     if request.method == 'POST':
@@ -17,11 +18,12 @@ def register(request):
             return redirect('/')
     else:
         form = RegistrationForm()
-    return direct_to_template(request=request, template='register.html', extra_context=locals())
+    return direct_to_template(request=request, template='registration/registration_form.html', extra_context=locals())
 
 def account(request):
-    if request.user.is_authenticated():
-        profile = request.user.get_profile()
+    user = request.user
+    if user.is_authenticated():
+        profile = user.get_profile()
         if request.method == 'POST':
             form = UserProfileForm(request.POST or None)
             if form.is_valid():
@@ -30,9 +32,36 @@ def account(request):
                 return redirect('/account/')
         else:
             form = UserProfileForm(instance=profile)
-        return direct_to_template(request=request, template='account.html', extra_context=locals())
+        a_projects = user.admin_project.all()
+        m_projects = user.moder_project.all()
+        num_messages = len(user.inbox.filter(is_new=True))
+        return direct_to_template(request=request, template='account/account.html', extra_context=locals())
     else:
         return redirect('/account/register/')
-        
-    
-    
+
+def messages(request):
+    user = request.user
+    a_projects = user.admin_project.all()
+    m_projects = user.moder_project.all()
+    m_messages = user.inbox.all()
+    return direct_to_template(request=request, template='account/inbox.html', extra_context=locals())
+
+def detail_message(request,message_id):
+    user = request.user
+    m = get_object_or_404(Message,pk=message_id)
+    form = SendMessageForm({'to_user':m.from_user})
+    a_projects = user.admin_project.all()
+    m_projects = user.moder_project.all()
+    return direct_to_template(request=request, template='account/detail_message.html', extra_context=locals())
+
+def send_message(request):
+    user = request.user
+    if request.method == 'POST':
+        username = request.POST['to_user']
+        to_user = User.objects.get(username=username)
+        subject = request.POST['subject']
+        text = request.POST['text']
+        if text and subject:
+            m = Message(from_user = user, to_user=to_user, subject=subject,text=text)
+            m.save()
+    return redirect('/account/')

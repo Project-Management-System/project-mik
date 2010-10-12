@@ -16,11 +16,9 @@ def detail_ticket(request,project_id,ticket_id):
     ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
     user = request.user
     if request.method == 'POST':
-        form = AddComment(request.POST)
-        if form.is_valid() and user.is_authenticated():
-            c = form.save(commit=False)
-            c.user = user
-            ticket.comment_set.create(c)
+        text = request.POST.get('text',None)
+        if text and user.is_authenticated():
+            ticket.comment_set.create(user=user, text=text)
             return redirect('/project/%s/tickets/%s/' % (project_id,ticket_id))
     else:
         form = AddComment()

@@ -18,8 +18,12 @@ urlpatterns = patterns('',
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/add/$','the_project.Tickets.views.detail_ticket'),
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/mik/Aptana Studio 3 Workspace/the_project/src/the_project/media/'}),
+#    (r'^account/', include('registration.urls')),
     (r'^account/register/$','the_project.UserProfile.views.register'),
     (r'^account/$','the_project.UserProfile.views.account'),
-    (r'^account/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^account/login/$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}),
     (r'^account/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    (r'^account/messages$', 'the_project.UserProfile.views.messages'),
+    (r'^account/messages/(?P<message_id>\d+)', 'the_project.UserProfile.views.detail_message'),
+    (r'^account/messages/send/$', 'the_project.UserProfile.views.send_message'),
 )

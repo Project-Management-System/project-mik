@@ -3,7 +3,7 @@
 {% block left_panel %}
   {% for i in News %}
       <a href="{% if project.id != 1 %}/project/{{ project.id }}/{% endif %}news/{{ i.id }}/">{{ i.title }}</a>
-      <div>{{ i.text }}</div>
+      <div>{{ i.text|truncatewords:10 }}</div>
       <div>{{ i.date }} <a href="users/{{ i.user.id }}">{{ i.user.username }}</a></div>
   {% endfor %}
   <a href="/project/{{ project.id }}/news/add">Add news...</a>

@@ -14,3 +14,14 @@ class UserProfile(models.Model):
     
     def __unicode__(self):
         return str(self.user)
+    
+class Message(models.Model):
+    subject = models.CharField(max_length=100)
+    text = models.TextField()
+    date = models.DateTimeField(default = datetime.now())
+    from_user = models.ForeignKey(User,related_name='outbox')
+    to_user = models.ForeignKey(User,related_name='inbox')
+    is_new = models.BooleanField(default = True)
+    
+    def __unicode__(self):
+        return str(self.from_user) + ' -> ' + str(self.to_user)

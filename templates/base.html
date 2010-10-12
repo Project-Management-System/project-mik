@@ -27,7 +27,7 @@
         <div onclick="document.location='/';" id="menu_item">
           Home
         </div>
-        <div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item">
+        <div onclick="document.location='/project/{% if project_id %}{{ project_id }}{% else %}1{% endif %}/tickets/';" id="menu_item">
           Tickets
         </div>
         <div onclick="document.location='/';" id="menu_item">

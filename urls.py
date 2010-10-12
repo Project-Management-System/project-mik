@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^project/(?P<project_id>\d+)/$','the_project.Projects.views.detail_project'),
     (r'^project/(?P<project_id>\d+)/news/(?P<news_id>\d+)/$','the_project.Projects.views.detail_news'),
     (r'^project/(?P<project_id>\d+)/tickets/$','the_project.Tickets.views.list_tickets'),
+    (r'^project/(?P<project_id>\d+)/tickets/add/$','the_project.Tickets.views.add_ticket'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/$','the_project.Tickets.views.detail_ticket'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/add/$','the_project.Tickets.views.detail_ticket'),
 

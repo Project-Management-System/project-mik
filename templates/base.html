@@ -19,34 +19,25 @@
   </head>
   <body>
     {% block header %}
-    <div id="logo">
-      <img src="/media/title.png" id="logo_back" />
-    </div>
-    <div id="span-24 last">
-      <center>
-        <div onclick="document.location='/';" id="menu_item">
-          Home
-        </div>
-        <div onclick="document.location='/project/{% if project_id %}{{ project_id }}{% else %}1{% endif %}/tickets/';" id="menu_item">
-          Tickets
-        </div>
-        <div onclick="document.location='/';" id="menu_item">
-          Menu
-        </div>
-        <div onclick="document.location='/';" id="menu_item">
-          Menu
-        </div>
-        <div onclick="document.location='/';" id="menu_item">
-          Menu
-        </div>
-      </center>
-    </div>
+      <div id="container">
+      <div id="header">
+          <h1 id="logo"><a><img src="/media/fish_l.png" alt="FullFish"  /></a></h1> 
+          <ul id="nav-global"> 
+              <li><div onclick="document.location='/';" id="menu_item">Home</div></li> 
+              <li><div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item">Tickets</div></li>
+              <li><div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item">Documentation</div></li>
+              <li><div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item">Downloads</div></li>
+              <li><div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item">Community</div></li>
+              <li><div onclick="document.location='/project/{{ project_id }}/tickets/';" id="menu_item" style="border-radius: 0em 0em 1em 0em;">About</div></li>
+          </ul>
+      </div> 
+  </div>
     {% endblock header %}
     <div id="left_panel">
-      {% block left_panel %}{% endblock %}
+      {% block left_panel %} {% endblock %}
     </div>
     <div id="right_panel">
-      {% block right_panel %}{% endblock %}
+      {% block right_panel %} {% endblock %}
     </div>
   </body>
 </html>

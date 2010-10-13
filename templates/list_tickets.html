@@ -17,7 +17,7 @@
     <td>{{ i.datetime_started }}</td>
   </tr>
   {% endfor %}
-</table>
+</table><br>
+<a href="/project/{{ project_id }}/tickets/add/">Create ticket</a>
 {% endif %}
-<a href="/project/{{ project_id }}/tickets/add/">Create new ticket</a>
 {% endblock %}

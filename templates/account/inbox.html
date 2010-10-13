@@ -10,15 +10,12 @@
       From:
     </td>
     <td>
-      To:
-    </td>
-    <td>
       Date:
     </td>
   </tr>  
   {% for i in m_messages %}
     <tr {% if i.is_new %}style="font-weight: bold;"{% endif %} onclick="document.location='/account/messages/{{ i.id }}/'">
-      <td>{{ i.subject }}</td><td>{{ i.from_user.username }}</td><td>{{ i.to_user.username }}</td><td>{{ i.date }}</td>
+      <td>{{ i.subject }}</td><td>{{ i.from_user.username }}</td><td>{{ i.date }}</td>
     </tr>
   {% endfor %}
 </table>

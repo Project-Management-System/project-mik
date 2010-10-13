@@ -12,9 +12,8 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST or None)
         if form.is_valid():
-            user = form.save(commit=False)
+            user = User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'],form.cleaned_data['password'])
             user.save()
-            form.save_m2m()
             user.userprofile_set.create()
             return redirect('/')
     else:

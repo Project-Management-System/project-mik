@@ -8,7 +8,6 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^$','Projects.views.detail_project',{'project_id':1}),
     (r'^news/(?P<news_id>\d+)/$','Projects.views.detail_news',{'project_id':1}),
-    (r'^users/(?P<user_id>\d+)/$','views.detail_user'),
     
     (r'^project/(?P<project_id>\d+)/news/add/$','Projects.views.add_news'),
     (r'^project/(?P<project_id>\d+)/$','Projects.views.detail_project'),

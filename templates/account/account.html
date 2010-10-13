@@ -18,6 +18,6 @@
 {% for i in a_projects %}
     <a href="/project/{{ i.id }}/">{{ i.name }}</a><br>
 {% endfor %}
-<a href="/account/messages/inbox/">Inbox({{ num_messages }})</a>
+<a href="/account/messages/inbox/">Inbox({{ num_messages }})</a><br>
 <a href="/account/messages/outbox/">Outbox</a>
 {% endblock %}

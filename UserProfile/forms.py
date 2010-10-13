@@ -11,7 +11,7 @@ class RegistrationForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('is_banned','user')
+        exclude = ('is_banned','user','rating')
         
 class SendMessageForm(forms.Form):
     to_user = forms.CharField()

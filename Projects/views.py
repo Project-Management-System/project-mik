@@ -4,16 +4,11 @@ from the_project.forms import LoginForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import Http404
-from the_project.Projects.forms import AddNewsForm
+from the_project.Projects.forms import AddNewsForm, AddProjectForm
 from django.contrib.auth.decorators import login_required
 
-
-def short_text(x):
-        x.text=x.text[:100]+'...'
-        return x
-
 def detail_project(request,project_id):
-    News = get_object_or_404(Project,pk=project_id).news_set.order_by('-date')
+    News = get_object_or_404(Project,pk=project_id).news_set.order_by('-date')[:5]
     project = get_object_or_404(Project,pk=project_id)
     return direct_to_template(request=request, template='index.html', extra_context={'News':News,
                                                                                      'project':project,
@@ -45,3 +40,15 @@ def add_news(request,project_id):
                                                                                         'project':project,
                                                                                         'user':user,
                                                                                         })
+@login_required
+def new_project(request):
+    user = request.user
+    form = ''
+    if request.method == 'POST':
+        form = AddProjectForm(request.POST or None)
+        if form.is_valid():
+            p = form.save()
+            return redirect('/account/')
+    else:
+        form = AddProjectForm()
+    return direct_to_template(request, 'add_project.html', locals())

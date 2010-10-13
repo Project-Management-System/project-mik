@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
 from the_project.Tickets.forms import AddComment, AddTicket
+from django.contrib.auth.decorators import login_required
 
 def list_tickets(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
@@ -25,6 +26,7 @@ def detail_ticket(request,project_id,ticket_id):
     comments = ticket.comment_set.all()
     return direct_to_template(request=request, template='detail_ticket.html', extra_context=locals())
 
+@login_required
 def add_ticket(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
     user = request.user

@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^project/(?P<project_id>\d+)/tickets/add/$','the_project.Tickets.views.add_ticket'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/$','the_project.Tickets.views.detail_ticket'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/add/$','the_project.Tickets.views.detail_ticket'),
+    (r'^project/new/','the_project.Projects.views.new_project'),
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'}),
 #    (r'^account/', include('registration.urls')),
@@ -28,4 +29,6 @@ urlpatterns = patterns('',
     (r'^account/messages/outbox/$', 'the_project.UserProfile.views.messages',{'type':'outbox'}),
     (r'^account/messages/(?P<message_id>\d+)', 'the_project.UserProfile.views.detail_message'),
     (r'^account/messages/send/$', 'the_project.UserProfile.views.send_message'),
+    
+#    (r'^','django.views.generic.simple.redirect_to',{'url':'/'})
 )

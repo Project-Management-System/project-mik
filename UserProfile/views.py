@@ -6,20 +6,21 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from the_project.UserProfile.models import UserProfile, Message
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST or None)
         if form.is_valid():
-            user = form.save(commit=False)
+            user = User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'],form.cleaned_data['password'])
             user.save()
-            form.save_m2m()
             user.userprofile_set.create()
             return redirect('/')
     else:
         form = RegistrationForm()
     return direct_to_template(request=request, template='registration/registration_form.html', extra_context=locals())
 
+@login_required
 def account(request):
     user = request.user
     profile = user.get_profile()
@@ -38,6 +39,7 @@ def account(request):
     else:
         return redirect('/account/register/')
 
+@login_required
 def messages(request,type):
     user = request.user
     a_projects = user.admin_project.all()
@@ -50,6 +52,7 @@ def messages(request,type):
         m_messages = user.outbox.all()
     return direct_to_template(request=request, template='account/inbox.html', extra_context=locals())
 
+@login_required
 def detail_message(request,message_id):
     user = request.user
     m = get_object_or_404(Message,pk=message_id)
@@ -65,6 +68,7 @@ def detail_message(request,message_id):
     m_projects = user.moder_project.all()
     return direct_to_template(request=request, template='account/detail_message.html', extra_context=locals())
 
+@login_required
 def send_message(request):
     user = request.user
     if request.method == 'POST':

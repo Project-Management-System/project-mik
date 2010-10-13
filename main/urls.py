@@ -20,5 +20,5 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^$','django.views.generic.simple.direct_to_template',{'template':'placeholder.html'}),
     (r'^demo/$',include('the_project.main.urls')),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/mik/Aptana Studio 3 Workspace/the_project/src/the_project/media/'}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/media/'}),
 )

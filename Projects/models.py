@@ -16,6 +16,7 @@ class Project(models.Model):
     tags = models.ManyToManyField(Tag,related_name = 'tag',blank = True)
     date_started = models.DateField(default = datetime.datetime.now())
     is_open = models.BooleanField(default = True)
+    licence = models.CharField(blank=True,max_length=50)
 #    last_edit = models.DateField(default = datetime.datetime.now())
     
     def __unicode__(self):

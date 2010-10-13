@@ -1,10 +1,10 @@
 from django.views.generic.simple import direct_to_template
-from the_project.Projects.models import Project, News
-from the_project.forms import LoginForm
+from Projects.models import Project, News
+from UserProfile.forms import LoginForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import Http404
-from the_project.Projects.forms import AddNewsForm, AddProjectForm
+from Projects.forms import AddNewsForm, AddProjectForm
 from django.contrib.auth.decorators import login_required
 
 def detail_project(request,project_id):

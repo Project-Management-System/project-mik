@@ -1,11 +1,11 @@
 # Create your views here.
 from django.views.generic.simple import direct_to_template
-from the_project.UserProfile.forms import RegistrationForm, UserProfileForm,\
+from UserProfile.forms import RegistrationForm, UserProfileForm,\
     SendMessageForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from the_project.UserProfile.models import UserProfile, Message
+from UserProfile.models import UserProfile, Message
 from django.contrib.auth.decorators import login_required
 
 def register(request):

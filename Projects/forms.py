@@ -1,5 +1,5 @@
 from django import forms
-from the_project.Projects.models import News, Project
+from Projects.models import News, Project
 
 class AddNewsForm(forms.ModelForm):
     class Meta:

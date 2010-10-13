@@ -1,5 +1,5 @@
 from django import forms
-from the_project.UserProfile.models import UserProfile, Message
+from UserProfile.models import UserProfile, Message
 from django.contrib.auth.models import User
 
 class RegistrationForm(forms.ModelForm):
@@ -17,3 +17,7 @@ class SendMessageForm(forms.Form):
     to_user = forms.CharField()
     subject = forms.CharField()
     text = forms.CharField(widget = forms.Textarea)
+    
+class LoginForm(forms.Form):
+    login = forms.CharField()
+    password = forms.PasswordInput()

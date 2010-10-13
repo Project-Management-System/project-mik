@@ -1,9 +1,9 @@
 # Create your views here.
-from the_project.Projects.models import Project
+from Projects.models import Project
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
-from the_project.Tickets.forms import AddComment, AddTicket
+from Tickets.forms import AddComment, AddTicket
 from django.contrib.auth.decorators import login_required
 
 def list_tickets(request,project_id):

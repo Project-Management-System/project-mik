@@ -1,5 +1,5 @@
 from django.db import models
-from the_project.Projects.models import Project
+from Projects.models import Project
 import datetime
 from django.contrib.auth.models import User
 

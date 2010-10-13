@@ -1,12 +1,12 @@
 # Create your views here.
 from django.views.generic.simple import direct_to_template
-from the_project.Projects.models import Project, News
-from the_project.forms import LoginForm
+from Projects.models import Project, News
+from UserProfile.forms import LoginForm
 from django.contrib.auth import get_user
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import Http404
-from the_project.Projects.forms import AddNewsForm
+from Projects.forms import AddNewsForm
 
 
 def detail_user(request,user_id):

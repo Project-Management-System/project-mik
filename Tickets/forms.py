@@ -1,5 +1,5 @@
 from django import forms
-from the_project.Tickets.models import Comment,Ticket
+from Tickets.models import Comment,Ticket
 
 TICKET_TYPES = (
                 ('Bug','Bug'),

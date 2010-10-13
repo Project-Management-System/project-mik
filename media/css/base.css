@@ -3,7 +3,6 @@ html{
     }
 body{
     font-family:,"Trebuchet MS",sans-serif;
-    
     }
 .body-layout{
     margin:0 auto;
@@ -52,14 +51,16 @@ a:link,a:visited{
 #header {
     max-width: 1280px;
     height:5em; 
-    background:  url(/media/header.png) no-repeat 0 center;
+    background:  url(/media/header.png)
+    no-repeat 0 center;
     border-radius: 0em 0em 1em 1em;
     }
 #header h1,#logo { 
     margin:0; 
     width:110px; 
     height:541px; 
-    position:absolute; 
+    position:absolute;
+     
     }
 #container { 
     position:relative;
@@ -92,7 +93,8 @@ a:link,a:visited{
     }
 #menu_item:hover {
     color:white; 
-    background: #234f32; 
+    background:  url(/media/buttons.png) 
+    no-repeat 0 center; 
     }
 #right_panel {
   float: right;
@@ -132,8 +134,8 @@ a:link,a:visited{
     
 #id_username{
     width: 95%;
-}
+    }
 
 #id_password{
     width: 95%;
-}
+    }

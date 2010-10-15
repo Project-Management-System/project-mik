@@ -3,7 +3,7 @@ from Projects.models import Project
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
-from Tickets.forms import AddComment, AddTicket
+from Tickets.forms import AddCommentForm, AddTicketForm, EditTicketForm
 from django.contrib.auth.decorators import login_required
 
 def list_tickets(request,project_id):
@@ -21,7 +21,7 @@ def detail_ticket(request,project_id,ticket_id):
             ticket.comment_set.create(user=user, text=text)
             return redirect('/project/%s/tickets/%s/' % (project_id,ticket_id))
     else:
-        form = AddComment()
+        form = AddCommentForm()
     comments = ticket.comment_set.all()
     return direct_to_template(request=request, template='detail_ticket.html', extra_context=locals())
 
@@ -30,7 +30,7 @@ def add_ticket(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
     user = request.user
     if request.method == 'POST':
-        form = AddTicket(request.POST or None)
+        form = AddTicketForm(request.POST or None)
         if form.is_valid():
             name = form.cleaned_data['name']
             text = form.cleaned_data['text']
@@ -39,5 +39,28 @@ def add_ticket(request,project_id):
             t.comment_set.create(text=text,user=user)
             return redirect('/project/%s/tickets/'%(project_id))
     else:
-        form = AddTicket()
+        form = AddTicketForm()
     return direct_to_template(request, 'add_ticket.html', locals())
+
+@login_required
+def edit_ticket(request,project_id,ticket_id):
+    project = get_object_or_404(Project,pk=project_id)
+    ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
+    user = request.user
+    if request.method == 'POST':
+        form = EditTicketForm(request.POST or None,instance=ticket)
+        if form.is_valid() and project.is_moder(user):
+            form.save()
+            return redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))
+    else:
+        form = EditTicketForm(instance=ticket)
+    return direct_to_template(request, 'edit_ticket.html', locals())
+
+def delete_ticket(request,project_id,ticket_id):
+    project = get_object_or_404(Project,pk=project_id)
+    ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
+    user = request.user
+    if project.is_moder(user):
+        ticket.delete()
+        return redirect('/project/%s/tickets/'%(project_id))
+    return redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))

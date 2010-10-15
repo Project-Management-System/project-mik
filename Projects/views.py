@@ -1,5 +1,5 @@
 from django.views.generic.simple import direct_to_template
-from Projects.models import Project, News
+from Projects.models import Project, News, Tag
 from UserProfile.forms import LoginForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
@@ -47,7 +47,12 @@ def new_project(request):
     if request.method == 'POST':
         form = AddProjectForm(request.POST or None)
         if form.is_valid():
+            tags = form.cleaned_data['_tags'].split()
             p = form.save()
+            for i in tags:
+                t = Tag.objects.get_or_create(text=i)[0]
+                t.save()
+                p.tags.add(t)
             return redirect('/account/')
     else:
         form = AddProjectForm()

@@ -7,6 +7,7 @@ class AddNewsForm(forms.ModelForm):
         fields = ('title', 'text')
         
 class AddProjectForm(forms.ModelForm):
+    _tags = forms.CharField()
     class Meta:
         model = Project
-        fields = ('name','description','is_open','licence','admins','moders','tags')
+        fields = ('name','description','is_open','licence','admins','moders')

@@ -1,9 +1,7 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block left_panel %}
-{% if error %}
-  <div class="error">{{error}}</div>
-{% endif %}
+{% if is_moder %}
   <form action="." method="post" class="login_form">{% csrf_token %}
     <table>
       {{ form }}
@@ -12,4 +10,7 @@
       <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
     </button>
   </form>
+{% else %}
+<div class="error">Access denied</div>
+{% endif %}
 {% endblock %}

@@ -5,8 +5,10 @@
       <a href="{% if project.id != 1 %}/project/{{ project.id }}/{% endif %}news/{{ i.id }}/">{{ i.title }}</a>
       <div>{{ i.text|truncatewords:10 }}</div>
       <div>{{ i.date }} <a href="users/{{ i.user.id }}">{{ i.user.username }}</a></div>
+  {% empty %}
+      <div>No news here...</div>
   {% endfor %}
-  <a href="/project/{{ project.id }}/news/add">Add news...</a>
+  {% if is_moder %}<a href="/project/{{ project.id }}/news/add">Add news...</a>{% endif%}
 {% endblock %}
 
 {% block right_panel %}

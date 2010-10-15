@@ -1,6 +1,11 @@
 {% extends "index.html" %}
 {% block left_panel %}
-<a href="/news/{{ news.id }}/">{{ news.title }}</a>
+<div><a href="/news/{{ news.id }}/">{{ news.title }}</a></div>
+{% if is_moder or is_author %}
+<a href="edit/">Edit news</a><a href="delete/">Delete news</a><br>
+{% else %}
+<div class="error">Access denied</div>
+{% endif %}
 <div>{{ news.text }}</div>
 <div>{{ news.date }} {{ news.user.username }}</div>
 {% endblock %}

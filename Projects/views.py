@@ -11,17 +11,17 @@ from django.forms.models import model_to_dict
 def detail_project(request,project_id):
     News = get_object_or_404(Project,pk=project_id).news_set.order_by('-date')[:5]
     project = get_object_or_404(Project,pk=project_id)
-    return direct_to_template(request=request, template='index.html', extra_context={'News':News,
-                                                                                     'project':project,
-                                                                                     'project_id':project_id,
-                                                                                     })
+    is_admin = project.is_admin(request.user)
+    is_moder = project.is_moder(request.user)
+    return direct_to_template(request, 'index.html', locals())
 
 def detail_news(request,project_id,news_id):
     news = get_object_or_404(get_object_or_404(Project,pk=project_id).news_set,pk=news_id)
     project = get_object_or_404(Project,pk=project_id)
-    return direct_to_template(request=request, template='detail_news.html', extra_context={'news':news,
-                                                                                           'project':project,
-                                                                                           })
+    is_admin = project.is_admin(request.user)
+    is_moder = project.is_moder(request.user)
+    return direct_to_template(request, 'detail_news.html', locals())
+
 @login_required
 def add_news(request,project_id):
     user=request.user
@@ -36,10 +36,39 @@ def add_news(request,project_id):
                 return redirect("/project/%d/" % (int(project_id)))
     else:
         form = AddNewsForm()
-    return direct_to_template(request=request, template='add_news.html', extra_context={'form':form,
-                                                                                        'project':project,
-                                                                                        'user':user,
-                                                                                        })
+    is_admin = project.is_admin(user)
+    is_moder = project.is_moder(user)
+    return direct_to_template(request, 'add_news.html', locals())
+
+@login_required
+def delete_news(request,project_id,news_id):
+    project = get_object_or_404(Project,pk=project_id)
+    news = get_object_or_404(project.news_set,pk=news_id)
+    is_moder = project.is_moder(request.user)
+    if is_moder:
+        news.delete()
+        redirect('/project/%s/'%(project_id))
+    return redirect('/project/%s/news/%s/'%(project_id,news_id))
+
+@login_required
+def edit_news(request,project_id,news_id):
+    user=request.user
+    project = get_object_or_404(Project,pk=project_id)
+    news = get_object_or_404(project.news_set,pk=news_id)
+    is_author = user == news.user
+    if request.method == 'POST':
+        if project.is_moder(user) or is_author:
+            form = AddNewsForm(request.POST or None,instance = news)
+            if form.is_valid():
+                form.save()
+                return redirect("/project/%s/news/%s/" % (project_id,news_id))
+    else:
+        form = AddNewsForm(instance = news)
+    is_admin = project.is_admin(user)
+    is_moder = project.is_moder(user)
+    is_author = user == news.user
+    return direct_to_template(request, 'add_news.html', locals())
+
 @login_required
 def new_project(request):
     user = request.user
@@ -80,4 +109,6 @@ def edit_project(request,project_id):
         t = model_to_dict(project)
         t.update({'_tags':' '.join([i.text for i in project.tags.all()])})
         form = AddProjectForm(t)
+    is_admin = project.is_admin(request.user)
+    is_moder = project.is_moder(request.user)
     return direct_to_template(request, 'edit_project.html', locals())

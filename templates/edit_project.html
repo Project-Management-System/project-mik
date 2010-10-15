@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 
 {% block left_panel %}
+{% if is_admin %}
 <form action="." method="post">{% csrf_token %}
   <table>
     {{ form }}
@@ -9,4 +10,7 @@
     <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
   </button>
 </form>
+{% else %}
+<div class="error">Access denied</div>
+{% endif %}
 {% endblock %}

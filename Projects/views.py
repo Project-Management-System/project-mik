@@ -28,7 +28,7 @@ def add_news(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
     if request.method == 'POST':
         form = AddNewsForm(request.POST or None)
-        if (user in project.admins.all() or user in project.moders.all()):
+        if project.is_moder(user):
             if form.is_valid():
                 n=form.save(commit=False)
                 n.user = user
@@ -68,7 +68,7 @@ def edit_project(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
     if request.method == 'POST':
         form = AddProjectForm(request.POST or None,instance=project)
-        if form.is_valid() and user in project.admins.all():
+        if form.is_valid() and project.is_admin(user):
             tags = form.cleaned_data['_tags'].split()
             form.save()
             project.tags.clear()

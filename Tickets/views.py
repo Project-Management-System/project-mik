@@ -72,3 +72,13 @@ def delete_ticket(request,project_id,ticket_id):
         ticket.delete()
         return redirect('/project/%s/tickets/'%(project_id))
     return redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))
+
+def delete_comment(request,project_id,ticket_id,comment_id):
+    project = get_object_or_404(Project,pk=project_id)
+    ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
+    comment = get_object_or_404(ticket.comment_set,pk=comment_id)
+    user = request.user
+    if project.is_moder(user):
+        comment.delete()
+        return redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))
+    redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))

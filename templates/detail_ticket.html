@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block left_panel %}
-  <a href="edit/">Edit ticket</a><a href="delete/">Delete ticket</a><br>
+  {% if is_moder %}<a href="edit/">Edit ticket</a><a href="delete/">Delete ticket</a><br>{% endif %}
   {{ ticket.name }}<br>
   {{ ticket.desription }}<br>
   {{ ticket.type }}<br>
@@ -12,6 +12,7 @@
     <hr />
     {{ i.user }} {{ i.datetime }}<br />
     {{ i.text }}
+    {% if is_moder %}<a href="comment/{{ i.id }}/delete/">Delete comment</a><br>{% endif %}
   {% endfor %}
   {% if user.is_authenticated %}
   <form action="add/" method="post">{% csrf_token %}

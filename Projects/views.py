@@ -81,6 +81,7 @@ def new_project(request):
                 t = Tag.objects.get_or_create(text=i)[0]
                 t.save()
                 p.tags.add(t)
+            p.admins.add(user)
             return redirect('/account/')
     else:
         form = AddProjectForm()

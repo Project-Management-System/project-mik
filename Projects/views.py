@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from Projects.forms import AddNewsForm, AddProjectForm
 from django.contrib.auth.decorators import login_required
+from django.forms.models import model_to_dict
 
 def detail_project(request,project_id):
     News = get_object_or_404(Project,pk=project_id).news_set.order_by('-date')[:5]
@@ -62,3 +63,23 @@ def list_project_by_tag(request,tag):
     t = get_object_or_404(Tag,text=tag)
     projects = t.projects.all()
     return direct_to_template(request, 'list_projects.html', locals())
+
+def edit_project(request,project_id):
+    user = request.user
+    project = get_object_or_404(Project,pk=project_id)
+    if request.method == 'POST':
+        form = AddProjectForm(request.POST or None,instance=project)
+        if form.is_valid() and user in project.admins.all():
+            tags = form.cleaned_data['_tags'].split()
+            form.save()
+            project.tags.clear()
+            for i in tags:
+                t = Tag.objects.get_or_create(text=i)[0]
+                t.save()
+                project.tags.add(t)
+            return redirect('/project/%s/'%(project_id))
+    else:
+        t = model_to_dict(project)
+        t.update({'_tags':' '.join([i.text for i in project.tags.all()])})
+        form = AddProjectForm(t)
+    return direct_to_template(request, 'edit_project.html', locals())

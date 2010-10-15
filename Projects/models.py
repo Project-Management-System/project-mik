@@ -13,7 +13,7 @@ class Project(models.Model):
     description = models.TextField(blank= True)
     admins = models.ManyToManyField(User,related_name = 'admin_project')
     moders = models.ManyToManyField(User,related_name = 'moder_project',blank = True)
-    tags = models.ManyToManyField(Tag,related_name = 'tag',blank = True)
+    tags = models.ManyToManyField(Tag,related_name = 'projects',blank = True)
     date_started = models.DateField(default = datetime.datetime.now())
     is_open = models.BooleanField(default = True)
     licence = models.CharField(blank=True,max_length=50)

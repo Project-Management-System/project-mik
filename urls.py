@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/$','Tickets.views.detail_ticket'),
     (r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/add/$','Tickets.views.detail_ticket'),
     (r'^project/new/','Projects.views.new_project'),
+    (r'^tag/(?P<tag>\w+)/','Projects.views.list_project_by_tag'),
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'}),
 #    (r'^account/', include('registration.urls')),

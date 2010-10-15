@@ -57,3 +57,8 @@ def new_project(request):
     else:
         form = AddProjectForm()
     return direct_to_template(request, 'add_project.html', locals())
+
+def list_project_by_tag(request,tag):
+    t = get_object_or_404(Tag,text=tag)
+    projects = t.projects.all()
+    return direct_to_template(request, 'list_projects.html', locals())

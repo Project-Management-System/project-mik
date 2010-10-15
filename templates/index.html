@@ -19,10 +19,13 @@
     <a href="/account/login/">Login</a> or <a href="/account/register/">Register</a> <hr>
 {% endif %}
 {% if project %}
-  <h2>Curent project:<br><a href="{% if project.id != 1 %}/project/{{ project.id }}{% endif %}/">{{ project.name }}</a></h2><h7><a href="/project/{{ project.id }}/edit/">edit</a></h7><br>
+  <h2>Curent project:<br><a href="{% if project.id != 1 %}/project/{{ project.id }}{% endif %}/">{{ project.name }}</a></h2>
+  <a href="/project/{{ project.id }}/edit/">edit</a><br>
   <div id="coment_proj">{{ project.description }}</div><br>
   {% for i in project.tags.all %}
     <div id="tag"><a href="/tag/{{ i.text }}/">{{ i.text }}</a></div>
+  {% empty %}
+    <div><a href="/project/{{ project.id }}/edit/">Add tags to project</a></div>
   {% endfor %}
   <hr>
 {% endif %}

@@ -26,7 +26,6 @@ def detail_news(request,project_id,news_id):
 def add_news(request,project_id):
     user=request.user
     project = get_object_or_404(Project,pk=project_id)
-    form = ''
     if request.method == 'POST':
         form = AddNewsForm(request.POST or None)
         if (user in project.admins.all() or user in project.moders.all()):
@@ -44,7 +43,6 @@ def add_news(request,project_id):
 @login_required
 def new_project(request):
     user = request.user
-    form = ''
     if request.method == 'POST':
         form = AddProjectForm(request.POST or None)
         if form.is_valid():
@@ -64,6 +62,7 @@ def list_project_by_tag(request,tag):
     projects = t.projects.all()
     return direct_to_template(request, 'list_projects.html', locals())
 
+@login_required
 def edit_project(request,project_id):
     user = request.user
     project = get_object_or_404(Project,pk=project_id)
@@ -75,7 +74,6 @@ def edit_project(request,project_id):
             project.tags.clear()
             for i in tags:
                 t = Tag.objects.get_or_create(text=i)[0]
-                t.save()
                 project.tags.add(t)
             return redirect('/project/%s/'%(project_id))
     else:

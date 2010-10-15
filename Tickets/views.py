@@ -12,7 +12,6 @@ def list_tickets(request,project_id):
     return direct_to_template(request=request, template='list_tickets.html', extra_context=locals())
 
 def detail_ticket(request,project_id,ticket_id):
-    form = AddComment()
     project = get_object_or_404(Project,pk=project_id)
     ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
     user = request.user
@@ -30,7 +29,6 @@ def detail_ticket(request,project_id,ticket_id):
 def add_ticket(request,project_id):
     project = get_object_or_404(Project,pk=project_id)
     user = request.user
-    form = ''
     if request.method == 'POST':
         form = AddTicket(request.POST or None)
         if form.is_valid():

@@ -44,7 +44,6 @@ def messages(request,type):
     user = request.user
     a_projects = user.admin_project.all()
     m_projects = user.moder_project.all()
-    m_messages = []
     num_messages = len(user.inbox.filter(is_new=True))
     if type == 'inbox':
         m_messages = user.inbox.all()
@@ -59,7 +58,6 @@ def detail_message(request,message_id):
     num_messages = len(user.inbox.filter(is_new=True))
     m.is_new = False
     m.save()
-    form = ''
     if m.to_user == user:
         form = SendMessageForm({'to_user':m.from_user})
     else:

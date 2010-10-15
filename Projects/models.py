@@ -22,6 +22,12 @@ class Project(models.Model):
     def __unicode__(self):
         return self.name
     
+    def is_admin(self,user):
+        return user in self.admins.all()
+    
+    def is_moder(self,user):
+        return user in self.moders.all() or user in self.admins.all()
+    
 class News(models.Model):
     title = models.CharField(max_length = 100)
     text = models.TextField()

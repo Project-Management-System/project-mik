@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block left_panel %}
-<form action="/project/new/" method="post">{% csrf_token %}
+<form action="." method="post">{% csrf_token %}
   <table>
     {{ form }}
   </table>

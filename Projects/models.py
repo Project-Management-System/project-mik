@@ -23,10 +23,10 @@ class Project(models.Model):
         return self.name
     
     def is_admin(self,user):
-        return user in self.admins.all()
+        return user in self.admins.all() or user.is_superuser
     
     def is_moder(self,user):
-        return user in self.moders.all() or user in self.admins.all()
+        return user in self.moders.all() or self.is_admin(user)
     
 class News(models.Model):
     title = models.CharField(max_length = 100)

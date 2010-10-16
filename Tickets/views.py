@@ -18,6 +18,7 @@ def detail_ticket(request,project_id,ticket_id):
     ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
     user = request.user
     if request.method == 'POST':
+        form = AddCommentForm(request.POST or None)
         text = request.POST.get('text',None)
         if text and user.is_authenticated():
             ticket.comment_set.create(user=user, text=text)
@@ -64,6 +65,7 @@ def edit_ticket(request,project_id,ticket_id):
     is_moder = project.is_moder(request.user)
     return direct_to_template(request, 'edit_ticket.html', locals())
 
+@login_required
 def delete_ticket(request,project_id,ticket_id):
     project = get_object_or_404(Project,pk=project_id)
     ticket = get_object_or_404(project.ticket_set,pk=ticket_id)
@@ -73,6 +75,7 @@ def delete_ticket(request,project_id,ticket_id):
         return redirect('/project/%s/tickets/'%(project_id))
     return redirect('/project/%s/tickets/%s/'%(project_id,ticket_id))
 
+@login_required
 def delete_comment(request,project_id,ticket_id,comment_id):
     project = get_object_or_404(Project,pk=project_id)
     ticket = get_object_or_404(project.ticket_set,pk=ticket_id)

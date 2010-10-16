@@ -1,7 +1,12 @@
 {% extends "index.html" %}
 
 {% block left_panel %}
-  {% if is_moder %}<a href="edit/">Edit ticket</a><a href="delete/">Delete ticket</a><br>{% endif %}
+  {% if is_moder %}
+    <div class="moder">
+      <a class="small button red" href="delete/">Delete ticket</a>
+      <a class="small button yellow" href="edit/">Edit ticket</a>
+    </div>
+  {% endif %}
   {{ ticket.name }}<br>
   {{ ticket.desription }}<br>
   {{ ticket.type }}<br>
@@ -9,19 +14,17 @@
   {{ ticket.datetime_started }}
   
   {% for i in comments %}
-    <hr />
-    {{ i.user }} {{ i.datetime }}<br />
-    {{ i.text }}
-    {% if is_moder %}<a href="comment/{{ i.id }}/delete/">Delete comment</a><br>{% endif %}
+  <div class="comment">
+    <div class="comment_title">{{ i.user }} {{ i.datetime }}</div>{% if is_moder %}<div class="moder"><a class="small button red" href="comment/{{ i.id }}/delete/">Delete comment</a></div><br>{% endif %}
+    <div class="comment_text">{{ i.text }}</div>
+  </div>
   {% endfor %}
   {% if user.is_authenticated %}
-  <form action="add/" method="post">{% csrf_token %}
+  <form action="." method="post">{% csrf_token %}
     <table>
       {{ form }}
     </table>
-    <button type="submit" class="button positive">
-      <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
-    </button>
+    <input type="submit" class="small button green" />
   </form>
   {% endif %}
 {% endblock %}

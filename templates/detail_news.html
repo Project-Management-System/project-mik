@@ -1,11 +1,14 @@
 {% extends "index.html" %}
 {% block left_panel %}
-<div><a href="/news/{{ news.id }}/">{{ news.title }}</a></div>
+<div class="news_title"><a href="/news/{{ news.id }}/">{{ news.title }}</a></div>
 {% if is_moder or is_author %}
-<a href="edit/">Edit news</a><a href="delete/">Delete news</a><br>
+<div class="moder">
+  <a href="edit/" class="small button yellow">Edit news</a>
+  <a href="delete/" class="small button red">Delete news</a>
+</div>
 {% else %}
 <div class="error">Access denied</div>
 {% endif %}
-<div>{{ news.text }}</div>
-<div>{{ news.date }} {{ news.user.username }}</div>
+<div class="news_text">{{ news.text }}</div>
+<div class="news_footer">{{ news.date }} {{ news.user.username }}</div>
 {% endblock %}

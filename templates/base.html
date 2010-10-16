@@ -2,12 +2,7 @@
   <head>
     <title>{%block title%}Full Fish{% endblock %}</title>
     {% block blueprint %}
-      <link rel="stylesheet" href="/media/css/blueprint/screen.css" type="text/css" media="screen, projection">
-      <link rel="stylesheet" href="/media/css/blueprint/print.css" type="text/css" media="print">
-      <link rel="stylesheet" href="/media/css/blueprint/plugins/buttons/screen.css" type="text/css">
-      <!--[if lt IE 8]>
-        <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
-      <![endif]-->
+
     {% endblock blueprint %}
     {% block dojo %}
       <script src="/media/js/dojo.js" type="text/javascript"></script>
@@ -32,6 +27,7 @@
           </ul>
       </div>
   </div>
+  <div>
     {% endblock header %}
     <div id="left_panel">
       {% block left_panel %} {% endblock %}
@@ -39,5 +35,6 @@
     <div id="right_panel">
       {% block right_panel %} {% endblock %}
     </div>
+  </div>
   </body>
 </html>

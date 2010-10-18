@@ -1,10 +1,11 @@
 {% extends "account/account.html" %}
 
 {% block left_panel %}
+{% if m %}
   <h2>{{ m.subject }}</h2><br>
   {{ m.text }}<br>
   {{ m.date }} {{ m.from_user }}
-  
+{% endif %}
   <form method="post" action="{% url send_message %}">{% csrf_token %}
     <table>
       {{ form }}

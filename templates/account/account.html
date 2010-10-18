@@ -21,4 +21,5 @@
 <a href="{% url create_project %}">Create new project</a><br>
 <a href="{% url inbox %}">Inbox({{ user.get_profile.num_new_messages }})</a><br>
 <a href="{% url outbox %}">Outbox</a>
+<a href="{% url send_message %}">Send</a>
 {% endblock %}

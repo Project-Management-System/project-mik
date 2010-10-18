@@ -67,11 +67,14 @@ def detail_message(request,message_id):
 def send_message(request):
     user = request.user
     if request.method == 'POST':
-        username = request.POST['to_user']
-        to_user = User.objects.get(username=username)
-        subject = request.POST['subject']
+        form = SendMessageForm(request.POST or None)
+        to_user = request.POST['to_user']
+        to_user = get_object_or_404(User,username=to_user)
         text = request.POST['text']
-        if text and subject:
-            m = Message(from_user = user, to_user=to_user, subject=subject,text=text)
+        if form.is_valid():
+            m = Message(from_user = user, to_user=to_user, subject=form.cleaned_data['subject'],text=form.cleaned_data['text'])
             m.save()
-    return redirect('/account/')
+            return redirect('/account/')
+    else:
+        form = SendMessageForm()
+    return direct_to_template(request, 'account/detail_message.html', locals())

@@ -3,7 +3,7 @@
 {% block left_panel %}
 {% for i in projects %}
   <div id="project_item">
-    <a href="/project/{{ i.id }}/">{{ i.name }}</a>
+    <a href="{% url project_main i.id %}">{{ i.name }}</a>
   </div>
 {% endfor %}
 {% endblock %}

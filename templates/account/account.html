@@ -16,9 +16,9 @@
 
 {% block right_panel %}
 {% for i in a_projects %}
-    <a href="/project/{{ i.id }}/">{{ i.name }}</a><br>
+    <a href="{% url project_main i.id %}">{{ i.name }}</a><br>
 {% endfor %}
-<a href="/project/new">Create new project</a><br>
-<a href="/account/messages/inbox/">Inbox({{ num_messages }})</a><br>
-<a href="/account/messages/outbox/">Outbox</a>
+<a href="{% url create_project %}">Create new project</a><br>
+<a href="{% url inbox %}">Inbox({{ num_messages }})</a><br>
+<a href="{% url outbox %}">Outbox</a>
 {% endblock %}

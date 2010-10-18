@@ -1,20 +1,12 @@
 {% extends "account/account.html" %}
 
 {% block left_panel %}
-<table>
+<table width="100%">
   <tr>
-    <td>
-      Subject:
-    </td>
-    <td>
-      From:
-    </td>
-    <td>
-      Date:
-    </td>
+    <td>Subject:</td><td>From:</td><td>Date:</td>
   </tr>  
   {% for i in m_messages %}
-    <tr {% if i.is_new %}style="font-weight: bold;"{% endif %} onclick="document.location='/account/messages/{{ i.id }}/'">
+    <tr {% if i.is_new %}style="font-weight: bold;"{% endif %} onclick="{% url message i.id %}">
       <td>{{ i.subject }}</td><td>{{ i.from_user.username }}</td><td>{{ i.date }}</td>
     </tr>
   {% endfor %}

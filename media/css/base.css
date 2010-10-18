@@ -2,120 +2,78 @@ body{
   margin:0px;
   font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
-.body-layout{
-    margin:0 auto;
-    width:78.1em;
-    overflow:hidden;
-    text-align:left;
-    }
-.header,.content,.footer{
-    min-width:78em;
-    }
-h1,h2,h3 { 
-    margin-top:.6em; 
-    font-family:"Trebuchet MS",sans-serif; 
-    font-weight:normal; 
-    }
-h1 { 
-    font-size:218%; 
-    margin-top:.6em; 
-    margin-bottom:.6em; 
-    color:#092e20; 
-    line-height:1.1em; 
-    }
-h2 { 
-    text-align: left;
-    font-size:150%; 
-    margin-top:0em; 
-    margin-bottom:0em; 
-    line-height:1.1em; 
-    color:#092e20; 
-    }
-h2 a{    
-    border:none;
-    cursor:pointer;
-    font-style: italic;
-    font-size:1em;
-    }
 
-#header {
-    max-width: 1280px;
-    height:5em; 
-    background:  url(/media/header.png)
-    no-repeat 0 center;
-    border-radius: 0em 0em 1em 1em;
+.header {
+    height:100px; 
+    width:100%;
+    background-image: url('/media/header.png');
+    background-repeat: no-repeat;
+    border-radius: 0em 0em 10px 10px;
     -webkit-box-shadow: #000000 0px 0px 15px;
-    }
-#header h1,#logo { 
-    margin:0; 
-    width:110px; 
-    height:541px; 
-    position:absolute;
-    }
-#container { 
-    position:relative;
-    min-width:60em; 
-    }
-#nav-global {
+}
+
+.menu {
     position:absolute; 
-    margin:0; 
-    bottom:0; 
-    right:0; 
+    margin:0px;
+    right:0px;
+    top:0px;
     font-size:1.4em;
     font-family:"Trebuchet MS",sans-serif; 
     white-space:nowrap;
-    }
-#nav-global li {
-    display:block;
-    float:left;
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    }
+    height: 100px;
+}
 
-#menu_item {
+.menu_item {
     display:block;
     float:left;
-    padding:5em 16px 10px 16px; 
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:70px;
     color: white;
     cursor: hand;
     text-shadow: black 1px 1px 2px;
-    }
-#menu_item:hover {
+    text-decoration: none;
+    height: 30px;
+}
+
+.menu_item:hover {
     color:white; 
     background:  url(/media/buttons.png) 
     no-repeat 0 center; 
-    }
-#right_panel {
+}
+
+.right_panel {
   float: right;
   background-color: #EEEEEE;
-  width: 19%;
+  min-width: 300px;
+  width:20%;
   border-radius: 10px;
   position: relative;
-  right: 10px;
+  right: 5px;
   top: 20px;
-  padding-top: 15px;
-  padding-left: 15px;
+  padding-top: 10px;
+  padding-left: 20px;
   padding-bottom: 10px;
   padding-right: 10px;
   -webkit-box-shadow: #000000 0px 0px 15px;
 }
-#left_panel {
+.left_panel {
   float: left;
   background-color: #C6D880;
-  width:74%;
+  min-width:200px;
+  width:70%;
   border-radius: 10px;
   position: relative;
-  left: 10px;
+  left: 5px;
   top:20px;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  padding-right: 15px;
+  padding-right: 20px;
   -webkit-box-shadow: #000000 0px 0px 15px;
 }
 
-#comment_proj{
+#comment_proj {
     border:none;
     text-decoration:none;
     font-size:0.8em;
@@ -143,48 +101,3 @@ h2 a{
   padding: 5px;
   margin-top:5px;
 }
-    
-.button, .button:visited {
-  background: #222 url(/media/overlay.png) repeat-x; 
-  display: inline-block; 
-  padding: 5px 10px 6px; 
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 6px; 
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  position: relative;
-  cursor: pointer
-  float:left;
-}
- 
-  .button:hover             { background-color: #111111; color: #ffffff; }
-  .button:active              { top: 1px; }
-  .small.button, .small.button:visited      { font-size: 11px}
-  .button, .button:visited,
-  .medium.button, .medium.button:visited    { font-size: 13px; 
-                          font-weight: bold; 
-                          line-height: 1; 
-                          text-shadow: 0 -1px 1px rgba(0,0,0,0.25); 
-                          }
-                          
-  .large.button, .large.button:visited      { font-size: 14px; 
-                            padding: 8px 14px 9px; }
-                            
-  .super.button, .super.button:visited      { font-size: 34px; 
-                            padding: 8px 14px 9px; }
-  
-  .pink.button, .magenta.button:visited   { background-color: #e22092; }
-  .pink.button:hover              { background-color: #c81e82; }
-  .green.button, .green.button:visited    { background-color: #91bd09; }
-  .green.button:hover               { background-color: #749a02; }
-  .red.button, .red.button:visited      { background-color: #e62727; }
-  .red.button:hover             { background-color: #cf2525; }
-  .orange.button, .orange.button:visited    { background-color: #ff5c00; }
-  .orange.button:hover            { background-color: #d45500; }
-  .blue.button, .blue.button:visited        { background-color: #2981e4; }
-  .blue.button:hover              { background-color: #2575cf; }
-  .yellow.button, .yellow.button:visited    { background-color: #ffb515; }
-  .yellow.button:hover            { background-color: #fc9200; }

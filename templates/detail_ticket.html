@@ -3,8 +3,8 @@
 {% block left_panel %}
   {% if is_moder %}
     <div class="moder">
-      <a class="small button red" href="delete/">Delete ticket</a>
-      <a class="small button yellow" href="edit/">Edit ticket</a>
+      <a class="small button red" href="{% url delete_ticket project_id ticket.id %}">Delete ticket</a>
+      <a class="small button yellow" href="{% url edit_ticket project_id ticket.id %}">Edit ticket</a>
     </div>
   {% endif %}
   {{ ticket.name }}<br>
@@ -15,7 +15,7 @@
   
   {% for i in comments %}
   <div class="comment">
-    <div class="comment_title">{{ i.user }} {{ i.datetime }}</div>{% if is_moder %}<div class="moder"><a class="small button red" href="comment/{{ i.id }}/delete/">Delete comment</a></div><br>{% endif %}
+    <div class="comment_title">{{ i.user }} {{ i.datetime }}</div>{% if is_moder %}<div class="moder"><a class="small button red" href="{% url delete_comment_in_ticket project_id ticket.id i.id %}">Delete comment</a></div><br>{% endif %}
     <div class="comment_text">{{ i.text }}</div>
   </div>
   {% endfor %}

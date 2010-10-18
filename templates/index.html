@@ -2,31 +2,31 @@
 
 {% block left_panel %}
   {% for i in News %}
-      <a href="{% if project.id != 1 %}/project/{{ project.id }}/{% endif %}news/{{ i.id }}/">{{ i.title }}</a>
+      <a href="{% url detail_news project_id i.id %}">{{ i.title }}</a>
       <div>{{ i.text|truncatewords:10 }}</div>
-      <div>{{ i.date }} <a href="users/{{ i.user.id }}">{{ i.user.username }}</a></div>
+      <div>{{ i.date }} {{ i.user.username }}</div>
   {% empty %}
       <div>No news here...</div>
   {% endfor %}
-  {% if is_moder %}<a href="/project/{{ project.id }}/news/add">Add news...</a>{% endif%}
+  {% if is_moder %}<a href="{% url add_news project_id %}">Add news...</a>{% endif%}
 {% endblock %}
 
 {% block right_panel %}
 {% if user.is_authenticated %}
-    Hello, <a href='/account/'>{{ user.username }}</a>. You mail (0)<br>
-    <a href="/account/logout/">Logout</a><hr>
+    Hello, <a href='{% url account %}'>{{ user.username }}</a>. You mail (0)<br>
+    <a href="{% url logout %}">Logout</a><hr>
 {% else %}
-    <a href="/account/login/">Login</a> or <a href="/account/register/">Register</a> <hr>
+    <a href="{% url login %}">Login</a> or <a href="{% url register %}">Register</a> <hr>
 {% endif %}
 {% if project %}
   Curent project:<br>
-  <a href="{% if project.id != 1 %}/project/{{ project.id }}{% endif %}/">{{ project.name }}</a>
-  <a href="/project/{{ project.id }}/edit/" class="small button yellow">edit</a><br>
+  <a href="{% url project_main project.id %}">{{ project.name }}</a>
+  <a href="{% url edit_project project.id %}" class="small button yellow">edit</a><br>
   <div id="comment_proj">{{ project.description }}</div><br>
   {% for i in project.tags.all %}
-    <div id="tag"><a href="/tag/{{ i.text }}/">{{ i.text }}</a></div>
+    <div id="tag"><a href="{% url by_tag i.text%}">{{ i.text }}</a></div>
   {% empty %}
-    <div><a href="/project/{{ project.id }}/edit/">Add tags to project</a></div>
+    <div><a href="{% url edit_project project.id %}">Add tags to project</a></div>
   {% endfor %}
   <hr>
 {% endif %}

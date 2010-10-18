@@ -19,6 +19,6 @@
     <a href="{% url project_main i.id %}">{{ i.name }}</a><br>
 {% endfor %}
 <a href="{% url create_project %}">Create new project</a><br>
-<a href="{% url inbox %}">Inbox({{ num_messages }})</a><br>
+<a href="{% url inbox %}">Inbox({{ user.get_profile.num_new_messages }})</a><br>
 <a href="{% url outbox %}">Outbox</a>
 {% endblock %}

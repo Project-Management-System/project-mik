@@ -34,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^account/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'},name='logout'),
     url(r'^account/messages/inbox/$', 'UserProfile.views.messages',{'type':'inbox'},name='inbox'),
     url(r'^account/messages/outbox/$', 'UserProfile.views.messages',{'type':'outbox'},name='outbox'),
-    url(r'^account/messages/(?P<message_id>\d+)', 'UserProfile.views.detail_message',name='message'),
+    url(r'^account/messages/(?P<message_id>\d+)/', 'UserProfile.views.detail_message',name='message'),
     url(r'^account/messages/send/$', 'UserProfile.views.send_message',name='send_message'),
     
 #    (r'^','django.views.generic.simple.redirect_to',{'url':'/'})

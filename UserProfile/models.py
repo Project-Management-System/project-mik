@@ -12,6 +12,9 @@ class UserProfile(models.Model):
     jabber = models.EmailField(blank = True)
     skype = models.CharField(max_length = 9,blank = True)
     
+    def num_new_messages(self):
+        return self.user.inbox.filter(is_new=True).count()
+    
     def __unicode__(self):
         return str(self.user)
     

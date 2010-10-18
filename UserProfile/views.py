@@ -34,7 +34,6 @@ def account(request):
             form = UserProfileForm(instance=profile)
         a_projects = user.admin_project.all()
         m_projects = user.moder_project.all()
-        num_messages = len(user.inbox.filter(is_new=True))
         return direct_to_template(request=request, template='account/account.html', extra_context=locals())
     else:
         return redirect('/account/register/')
@@ -44,7 +43,6 @@ def messages(request,type):
     user = request.user
     a_projects = user.admin_project.all()
     m_projects = user.moder_project.all()
-    num_messages = len(user.inbox.filter(is_new=True))
     if type == 'inbox':
         m_messages = user.inbox.all()
     else:
@@ -55,7 +53,6 @@ def messages(request,type):
 def detail_message(request,message_id):
     user = request.user
     m = get_object_or_404(Message,pk=message_id)
-    num_messages = len(user.inbox.filter(is_new=True))
     m.is_new = False
     m.save()
     if m.to_user == user:

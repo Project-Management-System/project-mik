@@ -15,7 +15,7 @@
 
 {% block right_panel %}
 {% if user.is_authenticated %}
-    Hello, <a href='{% url account %}'>{{ user.username }}</a>. You mail (0)<br>
+    Hello, <a href='{% url account %}'>{{ user.username }}</a> {% if user.get_profile.num_new_messages %}(<a href="{% url inbox %}">{{ user.get_profile.num_new_messages }} new notification</a>){% endif %}<br>
     <a href="{% url logout %}">Logout</a><hr>
 {% else %}
     <a href="{% url login %}">Login</a> or <a href="{% url register %}">Register</a> <hr>

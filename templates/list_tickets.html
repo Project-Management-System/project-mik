@@ -11,7 +11,7 @@
   </tr>
   {% for i in tickets %}
   <tr>
-    <td><a href="{% url project_id i.id %}">{{ i.name }}</a></td>
+    <td><a href="{% url detail_ticket project.id i.id %}">{{ i.name }}</a></td>
     <td>{{ i.type }}</td>
     <td>{{ i.status }}</td>
     <td>{{ i.datetime_started }}</td>
@@ -19,5 +19,5 @@
   {% endfor %}
 </table><br>
 {% endif %}
-<a href="{% url add_ticket project_id %}">Create ticket</a>
+<a href="{% url add_ticket project.id %}">Create ticket</a>
 {% endblock %}

@@ -2,9 +2,11 @@
 
 {% block left_panel %}
   {% for i in News %}
+  <div class="news">
       <a href="{% url detail_news project_id i.id %}">{{ i.title }}</a>
       <div>{{ i.text|truncatewords:10 }}</div>
       <div>{{ i.date }} {{ i.user.username }}</div>
+  </div>
   {% empty %}
       <div>No news here...</div>
   {% endfor %}

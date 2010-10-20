@@ -59,8 +59,7 @@ def detail_message(request,message_id):
         form = SendMessageForm({'to_user':m.from_user})
     else:
         form = SendMessageForm({'to_user':m.to_user})
-    a_projects = user.admin_project.all()
-    m_projects = user.moder_project.all()
+    profile = user.get_profile()
     return direct_to_template(request=request, template='account/detail_message.html', extra_context=locals())
 
 @login_required

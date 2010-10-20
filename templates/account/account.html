@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block right_panel %}
-{% for i in a_projects %}
+{% for i in profile.projects_where_admin %}
     <a href="{% url project_main i.id %}">{{ i.name }}</a><br>
 {% endfor %}
 <a href="{% url create_project %}">Create new project</a><br>

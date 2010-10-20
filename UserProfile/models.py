@@ -15,6 +15,12 @@ class UserProfile(models.Model):
     def num_new_messages(self):
         return self.user.inbox.filter(is_new=True).count()
     
+    def projects_where_admin(self):
+        return self.user.admin_project.all()
+    
+    def projects_where_moder(self):
+        return self.user.moder_project.all()
+    
     def __unicode__(self):
         return str(self.user)
     

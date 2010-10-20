@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block left_panel %}
+<div class="wiki_header"><div class="wiki_title">{{ page.title }}</div><div class="moder"><a href="{% url wiki_edit project_id page_name %}" class="small button green">Edit</a></div></div>
+{% if page %}
+  {{ page.text }}
+{% else %}
+  Page does not exist. You can <a href="{% url wiki_edit project_id page_name %}">create</a> it.
+{% endif %}
+{% endblock %}

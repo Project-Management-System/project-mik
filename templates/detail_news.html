@@ -6,8 +6,6 @@
   <a href="{% url edit_news project_id news.id %}" class="small button yellow">Edit news</a>
   <a href="{% url delete_news project_id news.id %}" class="small button red">Delete news</a>
 </div>
-{% else %}
-<div class="error">Access denied</div>
 {% endif %}
 <div class="news_text">{{ news.text }}</div>
 <div class="news_footer">{{ news.date }} {{ news.user.username }}</div>

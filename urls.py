@@ -24,7 +24,11 @@ urlpatterns = patterns('',
     url(r'^project/(?P<project_id>\d+)/tickets/(?P<ticket_id>\d+)/comment/(?P<comment_id>\d+)/delete/$','Tickets.views.delete_comment',name='delete_comment_in_ticket'),
     url(r'^project/new/','Projects.views.new_project',name='create_project'),
     url(r'^project/(?P<project_id>\d+)/edit/$','Projects.views.edit_project',name='edit_project'),
+    url(r'^project/(?P<project_id>\d+)/wiki/$','wiki.views.view_page',{'page_name':'start'},name='wiki'),
+    url(r'^project/(?P<project_id>\d+)/wiki/(?P<page_name>\w+)/$','wiki.views.view_page',name='wiki'),
+    url(r'^project/(?P<project_id>\d+)/wiki/(?P<page_name>\w+)/edit/$','wiki.views.edit_page',name='wiki_edit'),
     url(r'^tag/(?P<tag>\w+)/','Projects.views.list_project_by_tag',name='by_tag'),
+    
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'}),
 #    (r'^account/', include('registration.urls')),

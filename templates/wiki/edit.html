@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block left_panel %}
+<form method="post" action="{% url wiki_edit project_id page_name %}">{% csrf_token %}
+  <table>
+    {{ form }}
+  </table>
+  <button type="submit" class="button positive">
+      <img src="/media/css/blueprint/plugins/buttons/icons/tick.png" alt=""/> Submit
+  </button>
+</form>
+{% endblock %}

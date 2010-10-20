@@ -19,7 +19,7 @@
           <div class="menu"> 
             <a href="{% if project_id %}{% url project_main project_id %}{% else %}{% url project_main 1 %}{% endif %}" class="menu_item">Home</a> 
             <a href="{% if project_id %}{% url tickets project_id %}{% else %}{% url tickets 1 %}{% endif %}" class="menu_item">Tickets</a>
-            <a href="/" class="menu_item">Documentation</a>
+            <a href="{% if project_id %}{% url wiki project_id %}{% else %}{% url wiki 1 %}{% endif %}" class="menu_item">Wiki</a>
             <a href="/" class="menu_item">Downloads</a>
             <a href="/" class="menu_item">Community</a>
             <a href="/" class="menu_item" style="border-radius: 0em 0em 10px 0em;">About</a>

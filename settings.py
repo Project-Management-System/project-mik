@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     'UserProfile',
     'Forum',
     'main',
+    'wiki',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 #    'registration',

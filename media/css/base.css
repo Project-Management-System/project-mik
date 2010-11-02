@@ -1,7 +1,8 @@
 body{
   margin:0px;
   font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  min-width: 800px;
+  min-width: 1280px;
+  background-color: #A8CBFF;
 }
 
 .header {
@@ -11,8 +12,77 @@ body{
     background-repeat: no-repeat;
     background-color: #0000ff;
     border-radius: 0em 0em 10px 10px;
-    -webkit-box-shadow: #000000 0px 0px 15px;
+    -webkit-box-shadow: #000000 10px 0px 15px;
     box-shadow: #000000 0px 0px 15px;
+}
+
+.fish {
+    float:left;
+    position:absolute;
+    left:25px; 
+}
+.fish_img{}
+.fish_img:hover {
+    height:125px;
+    width:130px;
+}
+
+.team{
+    float:left;
+}
+
+.team_img:hover{
+    height:170px;
+    
+}
+
+.text{
+    float:left;
+    position:relative;
+    left:150px;
+}
+
+.title {
+    height: 100px;
+}
+
+h1{
+text-align: center;
+font-size: 1.6em;
+color: #3399FF;
+text-shadow: black 2px 1px 2px;
+}
+
+h1:first-letter{
+font-size:1.8em;
+color: #3399FF;
+text-shadow: black 5px 1px 7px;
+}
+
+.wiki_header a:link {
+  text-decoration:  none;
+} 
+.wiki_header a:visited {
+  text-decoration:  none;
+} 
+.wiki_header a:hover {
+  text-decoration:  none;
+}
+.wiki_header a:active {
+  text-decoration:  underline;
+}
+
+.menu a:link {
+  text-decoration:  none;
+} 
+.menu a:visited {
+  text-decoration:  none;
+} 
+.menu a:hover {
+  text-decoration:  none;
+}
+.menu a:active {
+  text-decoration:  underline;
 }
 
 .menu {
@@ -47,7 +117,7 @@ body{
 
 .right_panel {
   float: right;
-  background-color: #EEEEEE;
+  background-color: #F1E954;
   width:25%;
   border-radius: 10px;
   position: relative;
@@ -58,14 +128,16 @@ body{
 }
 .left_panel {
   float: left;
-  background-color: #C6D880;
+  background-color: #CFE0E3;
+  ghjg #E2D7FF;
   width:73%;
   border-radius: 10px;
   position: relative;
   left: 5px;
   top:20px;
-  -webkit-box-shadow: #000000 0px 0px 15px;
-  box-shadow: #000000 0px 0px 15px;
+  border-style:outset;
+  border-width: 2px;
+  border-color: #C4BBDD;
 }
 
 #comment_proj {
@@ -87,6 +159,17 @@ body{
 
 .moder {
   float:right;
+}
+.wiki_moder {
+  position:relative;
+  top:-50px;
+}
+.wiki_title {
+  float:left;
+  display:block;
+}
+.wiki_header {
+  height:90px;
 }
 
 .comment_title {

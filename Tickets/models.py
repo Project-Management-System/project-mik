@@ -5,11 +5,13 @@ from django.contrib.auth.models import User
 
 class Ticket(models.Model):
     name = models.CharField(max_length = 100)
-    #description = models.TextField()
+    description = models.TextField()
     project = models.ForeignKey(Project)
     type = models.CharField(max_length = 20)
     status = models.CharField(max_length = 20,default = 'new')
-    datetime_started = models.DateTimeField(default = datetime.datetime.now())
+    submitted = models.DateTimeField(default = datetime.datetime.now())
+    user = models.ForeignKey(User)
+    priority = models.IntegerField(default = 5)
     
     def __unicode__(self):
         return self.name

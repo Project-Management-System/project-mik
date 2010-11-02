@@ -2,7 +2,6 @@
 from Projects.models import Project
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
-from django.http import HttpResponse
 from Tickets.forms import AddCommentForm, AddTicketForm, EditTicketForm
 from django.contrib.auth.decorators import login_required
 

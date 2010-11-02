@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 
 {% block left_panel %}
+This wiki use <a href="http://en.wikipedia.org/wiki/Textile_(markup_language)">textile</a> markup language. 
 <form method="post" action="{% url wiki_edit project_id page_name %}">{% csrf_token %}
   <table>
     {{ form }}

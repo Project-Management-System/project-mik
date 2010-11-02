@@ -21,7 +21,7 @@
     <a href="{% url login %}">Login</a> or <a href="{% url register %}">Register</a> <hr>
 {% endif %}
 {% if project %}
-  Curent project:<br>
+  Current project:<br>
   <a href="{% url project_main project.id %}">{{ project.name }}</a>
   <a href="{% url edit_project project.id %}" class="small button yellow">edit</a><br>
   <div id="comment_proj">{{ project.description }}</div><br>

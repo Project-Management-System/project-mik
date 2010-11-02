@@ -1,7 +1,12 @@
 {% extends 'index.html' %}
 
 {% block left_panel %}
-<div class="wiki_header"><div class="wiki_title">{{ page.title }}</div><div class="moder"><a href="{% url wiki_edit project_id page_name %}" class="small button green">Edit</a></div></div>
+<div class="wiki_header">
+  <a href="{% url wiki project_id page_name %}"><h1>{{ page_name }}</h1></a>
+  <div class="moder wiki_moder">
+    <a href="{% url wiki_edit project_id page_name %}" class="small button green">Edit</a>
+  </div>
+</div>
 {% if page %}
   {{ page.text }}
 {% else %}

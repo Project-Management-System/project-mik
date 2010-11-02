@@ -8,6 +8,9 @@ from Projects.forms import AddNewsForm, AddProjectForm
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
+def index(request):
+    return direct_to_template(request, 'index_2.html', locals())
+
 def detail_project(request,project_id):
     News = get_object_or_404(Project,pk=project_id).news_set.order_by('-date')[:5]
     project = get_object_or_404(Project,pk=project_id)

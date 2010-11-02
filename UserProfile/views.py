@@ -32,8 +32,7 @@ def account(request):
                 return redirect('/account/')
         else:
             form = UserProfileForm(instance=profile)
-        a_projects = user.admin_project.all()
-        m_projects = user.moder_project.all()
+        profile = user.get_profile()
         return direct_to_template(request=request, template='account/account.html', extra_context=locals())
     else:
         return redirect('/account/register/')

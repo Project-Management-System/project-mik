@@ -176,6 +176,11 @@ text-shadow: black 5px 1px 7px;
   float:left;
 }
 
+.abouttext{
+  font-size: 22px;
+}
+
+
 .comment {
   background-color: #C6D8FF;
   border-radius: 10px;

@@ -24,7 +24,10 @@ def edit_page(request,page_name,project_id):
     if request.method == 'POST':
         text = request.POST.get('text',None)
         if text:
-            page = WikiPage(title=page_name,text=text,project=project)
+            if page:
+                page.text=text
+            else:
+                page = WikiPage(title=page_name,text=text,project=project)
             page.save()
             return redirect('/project/%s/wiki/%s/'%(project_id,page_name))
     return direct_to_template(request, 'wiki/edit.html', locals())

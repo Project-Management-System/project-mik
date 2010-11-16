@@ -28,10 +28,11 @@ urlpatterns = patterns('',
     url(r'^project/(?P<project_id>\d+)/wiki/$','wiki.views.view_page',{'page_name':'start'},name='wiki'),
     url(r'^project/(?P<project_id>\d+)/wiki/(?P<page_name>[a-z-]+)/$','wiki.views.view_page',name='wiki'),
     url(r'^project/(?P<project_id>\d+)/wiki/(?P<page_name>[a-z-]+)/edit/$','wiki.views.edit_page',name='wiki_edit'),
+    url(r'^project/(?P<project_id>\d+)/files/$','Downloads.views.list_files',name='list_files'),
+    url(r'^project/(?P<project_id>\d+)/files/upload/$','Downloads.views.upload',name='upload_file'),
+    url(r'^project/(?P<project_id>\d+)/files/delete/(?P<file_name>[a-zA-Z0-9_.-]+)/$','Downloads.views.delete',name='delete_file'),
     url(r'^tag/(?P<tag>\w+)/','Projects.views.list_project_by_tag',name='by_tag'),
     
-
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'}),
 #    (r'^account/', include('registration.urls')),
     url(r'^account/register/$','UserProfile.views.register',name='register'),
     url(r'^account/$','UserProfile.views.account',name='account'),
@@ -42,5 +43,6 @@ urlpatterns = patterns('',
     url(r'^account/messages/(?P<message_id>\d+)/', 'UserProfile.views.detail_message',name='message'),
     url(r'^account/messages/send/$', 'UserProfile.views.send_message',name='send_message'),
     
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'},name='static'),
 #    (r'^','django.views.generic.simple.redirect_to',{'url':'/'})
 )

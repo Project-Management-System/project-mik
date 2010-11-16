@@ -30,8 +30,8 @@
             <a href="{% if project_id %}{% url project_main project.id %}{% else %}{% url project_main 1 %}{% endif %}" class="menu_item">Home</a> 
             <a href="{% if project_id %}{% url tickets project.id %}{% else %}{% url tickets 1 %}{% endif %}" class="menu_item">Tickets</a>
             <a href="{% if project_id %}{% url wiki project.id %}{% else %}{% url wiki 1 %}{% endif %}" class="menu_item">Wiki</a>
-            <a href="/" class="menu_item">Downloads</a>
-            <a href="/" class="menu_item">Community</a>
+            <a href="{% if project_id %}{% url list_files project.id %}{% else %}{% url list_files 1 %}{% endif %}" class="menu_item">Downloads</a>
+            <a href="/" class="menu_item" style="border-radius: 0em 0em 10px 0px;">Community</a>
 <!--            <a href="/" class="menu_item" style="border-radius: 0em 0em 10px 0em;">About</a></!-->
         </div>
       </div>

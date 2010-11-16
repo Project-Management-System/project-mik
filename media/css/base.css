@@ -178,6 +178,10 @@ text-shadow: black 5px 1px 7px;
 
 .abouttext{
   font-size: 22px;
+  font-style:italic;
+  padding-right: 20px;
+  text-align:justify;
+  color: #024E85;
 }
 
 

@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block left_panel %}
+{% if is_moder %}
+<div class="moder">
+  <a class="button green" href="{% url upload_file project.id %}">Upload</a>
+</div>
+{% endif %}
+<table width="100%">
+  <tr>
+    <td>Name</td><td>Uploader</td><td>Date</td>
+  </tr>
+{% for i in project.files.all %}
+<tr>
+  <td><a href="/media/files/{{ project.id }}/{{ i.name }}">{{ i.name }}</a></td><td>i.uploader</td><td>i.date</td>
+  {%if is_moder %}
+  <td><a href="{% url delete_file project_id i.name %}" class="button red">Delete</a><td>
+  {% endif %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

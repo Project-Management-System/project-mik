@@ -36,7 +36,7 @@ def add_news(request,project_id):
                 n=form.save(commit=False)
                 n.user = user
                 project.news_set.add(n)
-                return redirect("/project/%d/" % (int(project_id)))
+                return redirect("/project/%s/" % (project_id))
     else:
         form = AddNewsForm()
     is_admin = project.is_admin(user)

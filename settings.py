@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'Forum',
     'main',
     'wiki',
+    'Downloads',
     'django.contrib.markup',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

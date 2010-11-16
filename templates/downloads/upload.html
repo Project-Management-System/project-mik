@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block left_panel %} 
+{% if is_moder %}
+  <form action="{% url upload_file project.id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <button type="submit" class="button green">Submit</button>
+  </form>
+{% else %}
+Access denied.
+{% endif %}
+{% endblock %}

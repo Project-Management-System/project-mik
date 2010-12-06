@@ -39,8 +39,11 @@ def sync(request):
     if not post.get('id', None):
         raise Http404
 
-    r = Room.objects.get(id=post['id'])
-
+	try:
+		r = Room.objects.get(id=post['id'])
+	except:
+		project = UserGroup.models.get(id=post['id'])
+		r = Room.objects.get_or_create(project)
     lmid = r.last_message_id()    
 
     return HttpResponse(jsonify({'last_message_id':lmid}))

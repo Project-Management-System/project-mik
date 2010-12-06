@@ -24,6 +24,9 @@ def send(request):
     r = Room.objects.get(id=int(p['chat_room_id']))
     r.say(request.user, p['message'])
     return HttpResponse('')
+    
+from Projects.models import Project
+from django.shortcuts import get_object_or_404
 
 @login_required
 def sync(request):
@@ -39,11 +42,12 @@ def sync(request):
     if not post.get('id', None):
         raise Http404
 
-	try:
-		r = Room.objects.get(id=post['id'])
-	except:
-		project = UserGroup.models.get(id=post['id'])
-		r = Room.objects.get_or_create(project)
+
+    try:
+        r = Room.objects.get(id=post['id'])
+    except:
+        project = get_object_or_404(Project,pk=post['id'])
+        r = Room.objects.get_or_create(project)
     lmid = r.last_message_id()    
 
     return HttpResponse(jsonify({'last_message_id':lmid}))
@@ -80,10 +84,6 @@ def receive(request):
     r = Room.objects.get(id=room_id)
     m = r.messages(offset)
     return HttpResponse(jsonify(m, ['id','author','message','type']))
-
-
-from Projects.models import Project
-from django.shortcuts import get_object_or_404
 
 @login_required
 def join(request):

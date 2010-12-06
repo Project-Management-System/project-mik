@@ -1,0 +1,11 @@
+from django.conf.urls.defaults import *
+
+urlpatterns = patterns('',
+    url(r'^$', 'chat.views.test'),
+    (r'^send/$', 'chat.views.send'),
+    (r'^receive/$', 'chat.views.receive'),
+    (r'^sync/$', 'chat.views.sync'),
+
+    (r'^join/$', 'chat.views.join'),
+    (r'^leave/$', 'chat.views.leave'),
+)

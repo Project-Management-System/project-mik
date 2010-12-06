@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 #    'registration',
 #    'django_extensions',
+    'chat',
 )
 
 LOGIN_REDIRECT_URL = '/'

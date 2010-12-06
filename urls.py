@@ -44,5 +44,6 @@ urlpatterns = patterns('',
     url(r'^account/messages/send/$', 'UserProfile.views.send_message',name='send_message'),
     
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'media/'},name='static'),
+    url(r'^chat/', include('chat.urls')),
 #    (r'^','django.views.generic.simple.redirect_to',{'url':'/'})
 )

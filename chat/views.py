@@ -73,12 +73,14 @@ def receive(request):
         offset = int(post['offset'])
     except:
         offset = 0
-
+        
     r = Room.objects.get(id=room_id)
-
     m = r.messages(offset)
-
     return HttpResponse(jsonify(m, ['id','author','message','type']))
+
+
+from Projects.models import Project
+from django.shortcuts import get_object_or_404
 
 @login_required
 def join(request):
@@ -88,7 +90,9 @@ def join(request):
     message
     '''
     p = request.POST
+    
     r = Room.objects.get(id=int(p['chat_room_id']))
+        
     r.join(request.user)
     return HttpResponse('')
 

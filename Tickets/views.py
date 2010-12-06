@@ -11,6 +11,7 @@ def list_tickets(request,project_id):
     is_admin = project.is_admin(request.user)
     is_moder = project.is_moder(request.user)
     return direct_to_template(request=request, template='list_tickets.html', extra_context=locals())
+
 @login_required
 def detail_ticket(request,project_id,ticket_id):
     project = get_object_or_404(Project,pk=project_id)
@@ -39,8 +40,8 @@ def add_ticket(request,project_id):
             name = form.cleaned_data['name']
             text = form.cleaned_data['text']
             type = form.cleaned_data['type']
-            t = project.ticket_set.create(name=name,type=type,user=user)
-            t.comment_set.create(text=text,user=user)
+            t = project.ticket_set.create(name=name,type=type,user=user,description=text)
+#            t.comment_set.create(text=text,user=user)
             return redirect('/project/%s/tickets/'%(project_id))
     else:
         form = AddTicketForm()

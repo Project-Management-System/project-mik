@@ -23,4 +23,4 @@ class EditTicketForm(forms.ModelForm):
     type = forms.CharField(widget = forms.Select(choices = TICKET_TYPES))
     class Meta:
         model = Ticket
-        fields = ('name','status')
+        fields = ('name','status','description')
